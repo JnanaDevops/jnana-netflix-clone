@@ -244,3 +244,4 @@ function getTopRated() {
 
 // Movies genres
 // https://api.themoviedb.org/3/genre/movie/list?api_key=19f84e11932abbc79e6d83f82d6d1045&language=en-US
+// End of the line
