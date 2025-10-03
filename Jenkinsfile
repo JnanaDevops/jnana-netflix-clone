@@ -21,9 +21,22 @@ pipeline {
         stage('Pre-Build Cleanup') {
             steps {
                 sh '''
-                   docker rm -f netflix-clone-app || true
-                   docker rmi -f netflix-clone || true
-                   '''
+                    echo "Checking for existing Docker container..."
+                    if docker ps -a --format '{{.Names}}' | grep -Eq '^netflix-clone-app$'; then
+                       echo "Removing existing container: netflix-clone-app"
+                       docker rm -f netflix-clone-app
+                    else
+                       echo "No existing container found."
+                    fi
+
+                    echo "Checking for existing Docker image..."
+                    if docker images -q netflix-clone | grep -q .; then
+                       echo "Removing existing image: netflix-clone"
+                       docker rmi -f netflix-clone
+                    else
+                       echo "No existing image found."
+                    fi
+                '''
             }
         }
 
