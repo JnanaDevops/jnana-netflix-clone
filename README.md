@@ -35,14 +35,14 @@ This project demonstrates my ability to build and deploy a **real-world applicat
 ### 📝 Register Page
 <img width="1468" height="803" alt="image" src="https://github.com/user-attachments/assets/1db30570-b442-4f41-b1dd-1bb0279986b8" />
 
-![Register Page](./screenshots/register.png)
+
 
 *(Add more screenshots if you have a home page / dashboard)*  
 
 ---
 
 ## 🚀 Live Demo
-👉 [Click here to try the app](https://your-deployed-link.com)  
+👉 [The app can be accessible when it is deployed](https://your-deployed-link.com)  
 
 ---
 
