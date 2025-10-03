@@ -1,6 +1,8 @@
 # 🎬 Netflix Clone  
 
 ![Netflix Clone Banner](https://user-images.githubusercontent.com/your-image-link/banner.png)  
+<img width="1468" height="804" alt="image" src="https://github.com/user-attachments/assets/c084dd4b-ae93-4c58-bdff-485d08981da7" />
+
 *(Replace with a nice banner or screenshot of your app)*  
 
 A **Netflix-inspired web application** built by me, showcasing my skills in **frontend development, authentication flow, UI/UX design, and deployment**.  
