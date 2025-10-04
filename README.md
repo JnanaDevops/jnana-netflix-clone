@@ -57,9 +57,6 @@ git clone https://github.com/JnanaDevops/jnana-netflix-clone.git
 cd jnana-netflix-clone
 
 # Install dependencies
-npm install
-
-#incase if you don't have npm installed then run below command
 sudo apt install npm -y
 
 # Start the development server
