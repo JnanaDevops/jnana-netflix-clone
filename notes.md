@@ -69,12 +69,11 @@ http://your-jenkins-url(ip:port)/github-webhook/
 
 * Creaate Self Managed K8S KIND cluster (docker is pre-requisite) *
 ```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y docker.io
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker ${USER} # Add your user to the docker group
-newgrp docker # Apply the group change immediately
+sudo apt-get install docker.io -y
+sudo systemctl status docker
+sudo systemctl is-enabled docker
+whoami
+sudo usermod -aG docker ${USER} && newgrp docker # Add your user to the docker group && # Apply the group change immediately
 ```
 *install kubectl *
 ```bash
@@ -142,6 +141,12 @@ kind create cluster --name my-cluster --config kind-config.yaml
 If you need ingress support inside KIND:
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/kind/deploy.yaml
+```
+Install helm
+```bash
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
 ```
 
 *Datadog for self managed k8s cluster *
