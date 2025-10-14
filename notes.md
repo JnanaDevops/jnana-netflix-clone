@@ -69,7 +69,39 @@ http://your-jenkins-url(ip:port)/github-webhook/
 
 * Creaate Self Managed K8S KIND cluster (docker is pre-requisite) *
 ```bash
-vim kind-cluster.yaml
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker ${USER} # Add your user to the docker group
+newgrp docker # Apply the group change immediately
+```
+*install kubectl *
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+```
+or
+```bash
+sudo snap install kubectl --classic
+```
+
+*Install KIND*
+```bash
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+or
+```bash
+curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.20.0/kind-linux-amd64 # Replace v0.20.0 with the latest version
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+
+```bash
+vim kind-config.yaml
 ```
 ```bash
 kind: Cluster
@@ -89,7 +121,28 @@ nodes:
         protocol: TCP
       - containerPort: 443
 ```
-
+or
+```bash
+# Save this as kind-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+```
+```bash
+kind create cluster --config kind-config.yaml
+```
+if you want to specify a name to your cluster,
+```bash
+kind create cluster --name my-cluster --config kind-config.yaml
+```
+*Enable Ingress (for local testing)*
+If you need ingress support inside KIND:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/kind/deploy.yaml
+```
 
 *Datadog for self managed k8s cluster *
 
