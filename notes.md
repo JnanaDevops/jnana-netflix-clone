@@ -62,3 +62,7 @@ echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.
 sudo apt-get update
 sudo apt-get install trivy
 ```
+*to crate a github webhook for jenkins*
+```text
+http://your-jenkins-url(ip:port)/github-webhook/
+```
