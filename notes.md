@@ -185,3 +185,14 @@ spec:
       enabled: true
       containerCollectAll: true
 ````
+
+-------------------------------------------------------------------------
+
+```bash
+kubectl edit datadogagent datadog
+```
+
+```bash
+kubectl get datadogagent datadog -o yaml > datadogagent.yaml
+cat datadogagent.yaml
+```
