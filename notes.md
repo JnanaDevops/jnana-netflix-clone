@@ -66,3 +66,64 @@ sudo apt-get install trivy
 ```text
 http://your-jenkins-url(ip:port)/github-webhook/
 ```
+
+* Creaate Self Managed K8S KIND cluster (docker is pre-requisite) *
+```bash
+vim kind-cluster.yaml
+```
+```bash
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.33.1
+  - role: worker
+    image: kindest/node:v1.33.1
+  - role: worker
+    image: kindest/node:v1.33.1
+  - role: worker
+    image: kindest/node:v1.33.1
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+```
+
+
+*Datadog for self managed k8s cluster *
+
+```bash
+helm repo add datadog https://helm.datadoghq.com
+helm install datadog-operator datadog/datadog-operator
+kubectl create secret generic datadog-secret --from-literal api-key=183bfd8be35e2e91c9b592c433567a7e
+```
+```yaml
+kind: "DatadogAgent"
+apiVersion: "datadoghq.com/v2alpha1"
+metadata:
+  name: "datadog"
+spec:
+  global:
+    site: "datadoghq.com"
+    credentials:
+      apiSecret:
+        secretName: "datadog-secret"
+        keyName: "api-key"
+  features:
+    apm:
+      instrumentation:
+        enabled: true
+        targets:
+          - name: "default-target"
+            ddTraceVersions:
+              java: "1"
+              python: "3"
+              js: "5"
+              php: "1"
+              dotnet: "3"
+              ruby: "2"
+    logCollection:
+      enabled: true
+      containerCollectAll: true
+````
