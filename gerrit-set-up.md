@@ -154,7 +154,7 @@ git add README.md
 git commit -m "Initial commit"
 ```
 
-####### or
+####### or -------------------------
 
 ```
 echo "Sunday" >> sunday.txt && echo "Monday" >> monday.txt && echo "Tuesday" >> tuesday.txt && echo "Wednessday" >> wednessday.txt && echo "Thursday" >> thursday.txt && echo "Friday" >> friday.txt && echo "Saturday" >> saturday.txt
@@ -180,6 +180,7 @@ git add friday.txt && git commit -m "friday"
 ```
 git add saturday.txt && git commit -m "saturday"
 ```
+####### ------------------------------------------
 
 ```
 git status
