@@ -1,4 +1,37 @@
 ```
+http - http://git.example.com/sarah/jnana.git
+```
+
+### Creating a new repository on the command line
+
+```
+touch README.md
+git init
+
+git add README.md
+git commit -m "first commit"
+git remote add origin http://git.example.com/sarah/jnana.git
+git push -u origin master
+```
+### Pushing an existing repository from the command line
+```
+git remote add origin http://git.example.com/sarah/jnana.git
+git push -u origin master
+```
+
+### These identify you in commits.
+```
+git config --list #to check config
+```
+```
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+
+```
+
+### -------------------------------------------------------------
+
+```
 sudo apt update && sudo apt upgrade -y
 ```
 ```
@@ -48,13 +81,61 @@ curl ifconfig.me
 http://<EC2_PUBLIC_IP>:8080
 ```
 ### Configure SSH access for Gerrit - Generate SSH key (on your local machine OR EC2)
+
+```
+ssh-keygen -C "gerrit" #this is 'rsa' eg: id_rsa, id_rsa.pub
+```
 ```
 ssh-keygen -t ed25519 -C "gerrit"
 ```
-
 ```
 cat ~/.ssh/id_ed25519.pub
 ```
+
+###### ------------------------------------------ OOB Git HUB (start)-----------------------------
+
+#### or if you need keys specific to each platform..
+```
+ssh-keygen -t ed25519 -C "gerrit" -f ~/.ssh/id_ed25519_gerrit
+ssh-keygen -t ed25519 -C "github" -f ~/.ssh/id_ed25519_github
+ssh-keygen -t ed25519 -C "gitlab" -f ~/.ssh/id_ed25519_gitlab
+```
+```
+~/.ssh/
+├── id_ed25519_gerrit
+├── id_ed25519_gerrit.pub
+├── id_ed25519_github
+├── id_ed25519_github.pub
+├── id_ed25519_gitlab
+└── id_ed25519_gitlab.pub
+```
+
+###### ------------ or SSH (one-time setup) ------------
+
+```
+ssh-keygen -t ed25519 -C "your-email@example.com"
+```
+
+```
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+##### this command, Start agent & add key:
+##### eval "$(ssh-agent -s)" - Starts the ssh-agent, a background process that securely holds your private SSH keys in memory.
+##### Result: your shell is now connected to an ssh-agent.
+##### ssh-add ~/.ssh/id_ed25519 - Loads your private SSH key (id_ed25519) into the running ssh-agent.
+##### Result: the agent can authenticate you to servers (GitHub, servers, etc.) using that key.
+
+
+#### Copy key and add it to GitHub:
+```
+cat ~/.ssh/id_ed25519.pub
+```
+###### --------------------------------------- OOB Git HUB (end) ---------------------------------------------
+
+
+
 
 ### Clone the Gerrit repo
 
